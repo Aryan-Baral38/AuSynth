@@ -1,6 +1,6 @@
+from config import config
 
-
-def generate_wave(note_freq, duration, oscillator, conf):
+def generate_wave(note_freq, duration):
     t= np.linspace(0, duration, int(conf.sample_rate * duration), False)
     wave = []
     match oscillator["type"]:

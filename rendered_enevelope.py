@@ -1,4 +1,5 @@
 
+
 def rendered_attack_envelope(oscillator, config):
     t = np.linspace(0, config.attack, int(config.sample_rate * config.attack), False)
     wave = t
