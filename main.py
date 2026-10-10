@@ -6,6 +6,8 @@ import time
 from event import event_handler
 from synth_config import config
 from voices import voices 
+import render_envelope
+from render_envelope import render_adr_envelope
 
 
 note_frequencies = {
@@ -50,6 +52,8 @@ class App(ctk.CTk):
 
 def main():
     app = App()
+    render_adr_envelope()
+
     
     app.mainloop()
 

@@ -18,7 +18,7 @@ def key_pressed(data):
         return
     note = char_to_note[data.char]
     if not note in voices:
-        voices[note] = Voice(440, 1, 1)
+        voices[note] = Voice(note_freq =440,duration=1)
         print(voices)
    
 
