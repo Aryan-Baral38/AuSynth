@@ -1,5 +1,5 @@
 import time
-from config import config
+from synth_config import config
 
 class Voice:
     def __init__(self,note_freq, start_time, duration):
@@ -7,8 +7,9 @@ class Voice:
         self.start_time = start_time
         self.duration = duration
 
-    def generate(self):
+    def __repr__(self):
+        return f"Voice, freq: {self.note_freq}"
+    def __str__(self):
+        return f"Voice, freq: {self.note_freq}"
 
-        wave = generate_wave()
-        
 

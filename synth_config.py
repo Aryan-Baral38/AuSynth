@@ -70,6 +70,6 @@ class Config_class:
             json.dump(data, f , indent = 4)
         print(f"Config saved")
 
-conf = Config_class.from_json("config.json")
+config = Config_class.from_json("config.json")
 
 

@@ -4,7 +4,8 @@ import customtkinter as ctk
 import os 
 import time
 from event import event_handler
-from config import config
+from synth_config import config
+from voices import voices 
 
 
 note_frequencies = {
@@ -17,7 +18,8 @@ note_frequencies = {
 
 def midi_note_converter(key_no, octave):
     return 12 + (key_no) * octave
-    
+
+
 class App(ctk.CTk):
 
     def __init__(self):

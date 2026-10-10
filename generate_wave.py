@@ -1,7 +1,7 @@
-from config import config
+from synth_config import config
 
 def generate_wave(note_freq, duration):
-    t= np.linspace(0, duration, int(conf.sample_rate * duration), False)
+    t= np.linspace(0, duration, int(config.sample_rate * duration), False)
     wave = []
     match oscillator["type"]:
         case "sine":
@@ -14,6 +14,6 @@ def generate_wave(note_freq, duration):
             wave = 2 * np.abs(2 * (t * note_freq - np.floor(0.5 + t* note_freq))) - 1 
         case _ :
             raise ValueError("Unsupported wave type")
-    return 0.5*wave
+    return wave
 
 

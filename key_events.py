@@ -1,7 +1,9 @@
 import numpy as np
 import sounddevice as sd
 from generate_wave import generate_wave
-pressed = {}
+from generate_wave import generate_wave
+from voice import Voice 
+from voices import voices 
 
 
 char_to_note = {
@@ -10,17 +12,21 @@ char_to_note = {
     "t" : "F#" , "g" : "G", "y" : "G#",
     "h" : "A", "u" : "A#", "j" : "B",
 }
+frame_index = 0
 def key_pressed(data):
-    if not data.char in pressed or pressed[data.char] == "not":
-        char = data.char 
-        pressed[char] = char
-        print(char)
-        print(char_to_note[char], "played")
-        #wave = generate_wave()
+    if not data.char in char_to_note:
+        return
+    note = char_to_note[data.char]
+    if not note in voices:
+        voices[note] = Voice(440, 1, 1)
+        print(voices)
    
 
 def key_released(data):
-    pressed[data.char] = "not"
-    print(data.char, "released")
+    if not data.char in char_to_note:
+        return
+    note = char_to_note[data.char]
+    del voices[note]
+    print(voices)
    
 
