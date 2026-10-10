@@ -2,4 +2,4 @@
 *.wav
 kinter.py
 sd.py
-.\__pycache__
+__pycache__/
