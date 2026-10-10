@@ -14,7 +14,6 @@ note_frequencies = {
     "A0": 27.50, "A#0": 29.14, "B0": 30.87,
 }
 
-voices = {} # {"note": voice_obj}
 
 def midi_note_converter(key_no, octave):
     return 12 + (key_no) * octave
