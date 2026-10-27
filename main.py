@@ -1,29 +1,35 @@
-import numpy as np 
-import sounddevice as sd 
-import customtkinter as ctk 
-import os 
-import time
+import numpy as np
+import sounddevice as sd
+import customtkinter as ctk
 from event import event_handler
 from synth_config import config
-from voices import voices 
+from voices import voices
 import render_envelope
 from render_envelope import render_adr_envelope
+from generate_wave import generate_wave
 
 
 note_frequencies = {
-    "C0": 16.35, "C#0": 17.32, "D0": 18.35,
-    "D#0": 19.45, "E0": 20.60, "F0": 21.83,
-    "F#0": 23.12, "G0": 24.50, "G#0": 25.96,
-    "A0": 27.50, "A#0": 29.14, "B0": 30.87,
+    "C0": 16.35,
+    "C#0": 17.32,
+    "D0": 18.35,
+    "D#0": 19.45,
+    "E0": 20.60,
+    "F0": 21.83,
+    "F#0": 23.12,
+    "G0": 24.50,
+    "G#0": 25.96,
+    "A0": 27.50,
+    "A#0": 29.14,
+    "B0": 30.87,
 }
 
 
-def midi_note_converter(key_no, octave):
+def midi_note_converter(key_no: int, octave: int) -> int:
     return 12 + (key_no) * octave
 
 
 class App(ctk.CTk):
-
     def __init__(self):
         super().__init__()
         self.title("Synth App")
@@ -36,26 +42,26 @@ class App(ctk.CTk):
         self.button.pack(padx=20, pady=50)
         self.bind("<KeyPress>", self.key_pressed)
         self.bind("<KeyRelease>", self.key_released)
-    
+
     def key_pressed(self, press):
         event_handler("keyPress", press)
 
     def key_released(self, release):
         event_handler("KeyRelease", release)
 
-
     def play_sound(self):
         # Generates waveform and streams non-blocking audio on click
-        sound = generate_wave(440, 1, oscillator={"type": "sine"})
+        sound = generate_wave(440, 1)
         # sd.play runs in a background thread by default so the GUI stays responsive
         sd.play(sound, samplerate=44100)
 
-def main():
-    app = App()
-    render_adr_envelope()
 
-    
+def main():
+    render_adr_envelope()
+    app = App()
+
     app.mainloop()
+
 
 if __name__ == "__main__":
     main()
